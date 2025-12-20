@@ -4,22 +4,22 @@ A deep learning system to detect whether a C/C++ function is malicious or safe. 
 
 ---
 
-## 📑 Table of Contents
+## 📑Table of Contents
 
-- [Project Overview](#project-overview)  
-- [Data Collection](#data-collection)  
-- [Data Processing](#data-processing)  
-- [Dataset & DataLoader](#dataset--dataloader)  
-- [Model Architecture](#model-architecture)  
-- [Training and Evaluation](#training-and-evaluation)  
-- [Deployment & Usage](#deployment--usage)  
-- [Results & Metrics](#results--metrics)  
-- [File Structure](#file-structure)  
+- [Project Overview](#project-overview)
+- [Data Collection](#data-collection)
+- [Data Preprocessing](#data-preprocessing)
+- [Dataset & DataLoader](#dataset--dataloader)
+- [Model Architecture](#model-architecture)
+- [Training & Evaluation](#training--evaluation)
+- [Deployment & Usage](#deployment--usage)
+- [File Structure](#file-structure)
 - [Acknowledgments](#acknowledgments)
+
 
 ---
 
-## 🧩 Project Overview
+## 🧩Project Overview
 
 Our project is **Malicious Code Detection**. The user inputs a function written in C or C++, and by clicking **Analyze**, the system determines whether the code is malicious or safe, along with a confidence score.
 
@@ -33,7 +33,7 @@ The original model was neither trained for detecting malicious code nor speciali
 The final objective is for the model to accurately classify whether a given function is **Malicious** or **Non-Malicious**.
 
 ---
-### Data Collection 🗂️
+## Data Collection 
 
 - **Source:** Combined from multiple C/C++ datasets (Devign, LineVul, PrimeVul, Ours, MegaVul)  
 - **Format:** Each row contains:  
@@ -49,7 +49,7 @@ This ensures a clean and unified dataset ready for tokenization and model traini
 
 ---
 
-## 🧹 Data Processing
+## 🧹Data Preprocessing
 
 - **Preprocessing:** Remove comments, normalize whitespace, fix encoding, replace literals, remove includes/macros  
 - **Tokenization:** Convert code to token sequences using **CodeBERT tokenizer**  
@@ -57,7 +57,7 @@ This ensures a clean and unified dataset ready for tokenization and model traini
 
 ---
 
-## 📊 Dataset & DataLoader
+## 📊Dataset & DataLoader
 
 **Dataset:** Custom PyTorch `TensorDataset` combining:
 
@@ -81,7 +81,7 @@ This ensures a clean and unified dataset ready for tokenization and model traini
 
 ---
 
-## 🏗️ Model Architecture
+## Model Architecture 
 
 - **Base Model:**  CodeBERT (`microsoft/codebert-base`)  
 - **Pooling:** Combines token embeddings into a single vector representing the whole function. CodeBERT outputs a vector for each token; pooling averages them to get one vector per function.  
@@ -97,7 +97,7 @@ This ensures a clean and unified dataset ready for tokenization and model traini
 
 ---
 
-## 📈 Training and Evaluation
+## 📈Training & Evaluation
 
 - **Epochs:** 6  
 - **Batch size:** 16  
@@ -125,7 +125,7 @@ This ensures a clean and unified dataset ready for tokenization and model traini
 
 ---
 
-## 🚀 Deployment & Usage
+## 🚀Deployment & Usage
 
 ### Running the System
 
@@ -145,7 +145,7 @@ python backend/main.py
 4. The system outputs the prediction and confidence score
 ---
 
-## File Structure
+## 📁File Structure
 
 ```bash
 Malicious-Code-Detection/
