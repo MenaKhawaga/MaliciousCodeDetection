@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cairo:wght@500;700&display=swap" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="orbs"></div>
+
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="title">VulnDetect</div>
+        <div class="tagline" data-i18n="tagline">Code Security Analysis</div>
+      </div>
+    </div>
+    
+  </header>
+
+  <main class="wrap">
+    <section class="hero card">
+      <h1 data-i18n="heroTitle">Secure Your Code. Detect Threats.</h1>
+      <p data-i18n="heroDesc">Paste your code or upload a file to analyze for potential security vulnerabilities using our deep learning model..</p>
+    </section>
+
+    <section class="grid">
+      <!-- Editor card -->
+      <div class="card" id="editorCard">
+      <div class="card-header">
+          <h3 data-i18n="editorTitle">Code Input</h3>
+          <span class="badge">
+            
+            <span data-i18n="modelName">Deep Learning Model</span>
+          </span>
+        </div>
+
+        <div class="editor" id="editor">
+          <pre class="gutter" id="gutter">1</pre>
+          <textarea class="code" id="code" spellcheck="false" placeholder="// Paste code here or drop a file"
+            aria-label="Code input"></textarea>
+        </div>
+
+        <div class="actions">
+          <label class="btn" for="file">
+            <input type="file" id="file" accept=".c,.cpp" />
+            <span data-i18n="uploadBtn">Upload File</span>
+          </label>
+          <button class="btn" id="clearBtn"><span data-i18n="clearBtn">Clear</span></button>
+          <button class="btn primary" id="analyzeBtn"><span data-i18n="analyzeBtn">Analyze Code</span></button>
+
+        </div>
+        
+      </div>
+
+      <!-- Results card -->
+      <div class="card">
+        <div class="card-header">
+          <h3 data-i18n="resultTitle">Security Analysis Result</h3>
+          <span class="badge" id="modelMeta">—</span>
+        </div>
+        <div class="result">
+          <div class="status-container">
+            <div id="safeStatus" class="status-item status-safe">
+              <div class="status-icon"><i class="fas fa-check-circle"></i></div>
+              <div class="status-label" data-i18n="safeLabel">Safe</div>
+              <div id="safeConfidence" class="status-confidence"></div>
+            </div>
+            <div id="vulnerableStatus" class="status-item status-vulnerable">
+              <div class="status-icon"><i class="fas fa-exclamation-triangle"></i></div>
+              <div class="status-label" data-i18n="vulnerableLabel">Vulnerable</div>
+              <div id="vulnerableConfidence" class="status-confidence"></div>
+            </div>
+          </div>
+          <div class="verdict">
+            <span class="chip" id="verdictChip">—</span>
+            <span class="meta" id="timeMeta"> </span>
+          </div>
+          <div class="risk"><span id="riskBar"></span></div>
+          <div class="issues" id="issues"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
