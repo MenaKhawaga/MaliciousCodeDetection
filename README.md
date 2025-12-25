@@ -14,6 +14,7 @@ A deep learning system to detect whether a C/C++ function is malicious or safe. 
 - [Training & Evaluation](#training--evaluation)
 - [Deployment & Usage](#deployment--usage)
 - [File Structure](#file-structure)
+- [Team & Contributions](#team--contributions)
 - [Acknowledgments](#acknowledgments)
 
 
@@ -162,6 +163,17 @@ Malicious-Code-Detection/
 └── README.md
 ```
 ---
+## 👥 Team & Contributions
+
+| Member Name     | Role / Contribution |
+|-----------------|------------------|
+| Mena Khawaga    | Backend: integrated model with backend and frontend |
+| Member 2        | Frontend (HTML/CSS/JS) |
+| Member 3        | Data Collection, Cleaning & Preprocessing & Splitting |
+| Member 4        | Tokenization, DataLoader, `compute_metrics`(acc/precision/recall/F1) |
+| Member 5        | Model Architecture |
+| Member 6        | Training & Evaluation |
+
 ## 🔗Acknowledgments
 
 - *CodeBERT model:* [Hugging Face – microsoft/codebert-base](https://huggingface.co/microsoft/codebert-base)  
