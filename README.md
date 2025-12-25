@@ -168,11 +168,11 @@ Malicious-Code-Detection/
 | Member Name     | Role / Contribution |
 |-----------------|------------------|
 | Mena Khawaga    | Backend: integrated model with backend and frontend |
-| Member 2        | Frontend (HTML/CSS/JS) |
-| Member 3        | Data Collection, Cleaning & Preprocessing & Splitting |
-| Member 4        | Tokenization, DataLoader, `compute_metrics`(acc/precision/recall/F1) |
-| Member 5        | Model Architecture |
-| Member 6        | Training & Evaluation |
+| Aliaa Walid     | Frontend (HTML/CSS/JS) |
+| Zaid Mohamed    | Data Collection, Cleaning & Preprocessing & Splitting |
+| Omar Adel       | Tokenization, DataLoader, `compute_metrics`(acc/precision/recall/F1) |
+| Malak Abdelsattar| Model Architecture |
+| Kenzy Elabd       | Training & Evaluation |
 
 ## 🔗Acknowledgments
 
