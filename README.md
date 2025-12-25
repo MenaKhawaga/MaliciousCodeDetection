@@ -163,7 +163,7 @@ Malicious-Code-Detection/
 └── README.md
 ```
 ---
-## 👥 Team & Contributions
+## Team & Contributions
 
 | Member Name     | Role / Contribution |
 |-----------------|------------------|
