@@ -2,7 +2,7 @@
 
 A deep learning system to detect whether a C/C++ function is malicious or safe. Users can input a function via text or file upload and click **Analyze**; the system predicts the class along with a confidence score.
 
----
+--- 
 
 ## 📑Table of Contents
 
