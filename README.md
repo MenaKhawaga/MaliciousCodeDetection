@@ -169,7 +169,7 @@ Malicious-Code-Detection/
 |-----------------|------------------|
 | Mena Khawaga    | Backend: integrated model with backend and frontend |
 | Aliaa Walid     | Frontend (HTML/CSS/JS) |
-| Zaid Mohamed    | Data Collection, Cleaning & Preprocessing & Splitting |
+| Zaid Mohamed    | Data Collection, Splitting & Preprocessing   |
 | Omar Adel       | Tokenization, DataLoader, `compute_metrics`(acc/precision/recall/F1) |
 | Malak Abdelsattar| Model Architecture |
 | Kenzy Elabd       | Training & Evaluation |
