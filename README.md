@@ -152,14 +152,14 @@ python backend/main.py
 Malicious-Code-Detection/
 ├── backend/
 │   ├── main.py          # Backend server & inference
-│   ├── preprocess.py    # Code preprocessing and tokenization
+│   ├── Preprocessing.py    # Code preprocessing and tokenization
 │   ├── model.py         # Model structure
 │   └── model_weights.pt # Fine-tuned CodeBERT weights
 ├── frontend/
 │   ├── index.html       # Web interface
 │   ├── style.css        # Styling
 │   └── script.js        # Frontend logic
-├── Training_model.py    # Full pipeline: data → preprocessing → model → train → save weights
+├── Malicious_Code_Detection_Full_Pipeline.ipynb  # Full pipeline: data → preprocessing → model → train → save weights
 └── README.md
 ```
 ---
