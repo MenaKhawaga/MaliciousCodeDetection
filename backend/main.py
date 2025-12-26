@@ -29,7 +29,7 @@ model = CodeBERTClassifier()    # instantiate model
 model.to(device)                # move it the device(gpu or cpu)
 
 # Load the saved model weights
-state_dict_path = "model_weights.pt"  
+state_dict_path = "best_model.pt"  
 state_dict = torch.load(state_dict_path, map_location=device)
 
 # fix the model saved with DataParallel (keys have 'module.' prefix)
@@ -103,3 +103,4 @@ async def predict(
         "timeMs": elapsed_ms,
         "model": "CodeBERT fine-tuned"
     }
+
