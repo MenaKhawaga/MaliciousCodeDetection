@@ -120,7 +120,7 @@ analyzeBtn.onclick = async () => {
       return;
     }
     // Send request to FastAPI backend
-    const res = await fetch("http://" + window.location.hostname + ":9000/predict", {
+    const res = await fetch("http://" + window.location.hostname + ":8000/predict", {
       method:'POST',
       body: formData
     });
