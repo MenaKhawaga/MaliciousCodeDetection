@@ -135,13 +135,13 @@ This ensures a clean and unified dataset ready for tokenization and model traini
 ```bash
  cd backend
 ```
-# Run the backend server
+### Run the backend server
 ```bash
 uvicorn main:app --port 9000
 ```
-# --port 9000: Runs the server on port 9000. You can change this if another service is using the port.
+**--port 9000**: Runs the server on port 9000. You can change this if another service is using the port.
 
-# The backend will now be available at: http://localhost:9000
+###The backend will now be available at: **http://localhost:9000**
 
 ### User Flow
 
