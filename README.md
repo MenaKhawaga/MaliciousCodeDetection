@@ -164,7 +164,7 @@ Malicious-Code-Detection/
 │   ├── main.py          # Backend server & inference
 │   ├── Preprocessing.py    # Code preprocessing and tokenization
 │   ├── model.py         # Model structure
-│   └── model_weights.pt # Fine-tuned CodeBERT weights
+│   └── best_model.pt  # Fine-tuned CodeBERT weights
 ├── frontend/
 │   ├── index.html       # Web interface
 │   ├── style.css        # Styling
