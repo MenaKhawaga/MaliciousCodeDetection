@@ -131,7 +131,7 @@ This ensures a clean and unified dataset ready for tokenization and model traini
 ### Running the System
 1. Open the project folder in **Visual Studio Code (VS Code)**.
 
-2.Open a terminal inside VS Code (`View > Terminal` or press `` Ctrl+` ``).
+2. Open a terminal inside VS Code (`View > Terminal` or press `` Ctrl+` ``).
 
 3. Make sure you are in the **backend** folder:
 ```bash
