@@ -1,80 +1,63 @@
+import torch
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Optional
-import torch
-import time
-
 from transformers import RobertaTokenizerFast
 from model import CodeBERTClassifier
 from Preprocessing import preprocess_code
+from typing import Optional
+import time
 
 
-# =====================================================
-# FastAPI App
-# =====================================================
+
 app = FastAPI(title="Malicious Code Detection API")
 
+# Configure CORS to allow requests from any origin
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],      
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"]
 )
 
 
-# =====================================================
-# Device
-# =====================================================
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# initialize your model
-model = CodeBERTClassifier()
-model.to(device)
+# Load and prepare the model
+model = CodeBERTClassifier()    # instantiate model
+model.to(device)                # move it the device(gpu or cpu)
 
-# load the saved state_dict
+# Load the saved model weights
 state_dict_path = "model_weights.pt"  
-
-# load the state_dict safely
 state_dict = torch.load(state_dict_path, map_location=device)
 
-# fix if model was saved with DataParallel (keys have 'module.' prefix)
+# fix the model saved with DataParallel (keys have 'module.' prefix)
 from collections import OrderedDict
 new_state_dict = OrderedDict()
 for k, v in state_dict.items():
-    # remove 'module.' if it exists
     name = k.replace("module.", "")
     new_state_dict[name] = v
 
 
-# Tokenizer
-# ------------------------
+# Load tokenizer
 tokenizer = RobertaTokenizerFast.from_pretrained("microsoft/codebert-base")
 MAX_LEN = 512
 
 # load the cleaned state_dict
 model.load_state_dict(new_state_dict)
 model.eval()  # set to evaluation mode
-# =====================================================
-# Routes
-# =====================================================
+
+
+# API Routes
 @app.get("/")
 def home():
-    return {"message": "Malicious Code Detection API is running"}
-
+    return {"message": "Welcome to Malicious Code Detection API"}
 
 @app.get("/status")
 def status():
-    return {
-        "status": "ok",
-        "device": str(device),
-        "model": "CodeBERT (fine-tuned)"
-    }
+    return {"status": "Backend is running"}
 
-
-# =====================================================
-# Prediction Endpoint
-# =====================================================
 @app.post("/predict")
 async def predict(
     file: Optional[UploadFile] = File(None),
@@ -90,8 +73,8 @@ async def predict(
 
     start_time = time.time()
 
-    # -----------------------
-    # Preprocessing
+    # Preprocess the code input
+
     code = preprocess_code(code)
 
     encoded = tokenizer(
@@ -105,8 +88,7 @@ async def predict(
     input_ids = encoded["input_ids"].to(device)
     attention_mask = encoded["attention_mask"].to(device)
 
-    # -----------------------
-    # Inference
+    # Model Inference
     with torch.no_grad():
         logit = model(input_ids, attention_mask)
         probability = torch.sigmoid(logit).item()
@@ -116,8 +98,8 @@ async def predict(
     elapsed_ms = int((time.time() - start_time) * 1000)
 
     return {
-        "verdict": verdict,          # malicious / safe
-        "risk": round(probability, 4),
+        "verdict": verdict,            # malicious / safe
+        "risk": round(probability, 4), # probability score
         "timeMs": elapsed_ms,
         "model": "CodeBERT fine-tuned"
     }
