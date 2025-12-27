@@ -124,7 +124,7 @@ analyzeBtn.onclick = async () => {
       method:'POST',
       body: formData
     });
-
+  
     const data = await res.json();
     renderResult(data);
   }catch(err){
@@ -148,7 +148,22 @@ const safeConfidence = document.getElementById('safeConfidence');
 const vulnerableConfidence = document.getElementById('vulnerableConfidence');
 
 function renderResult(data){
-  console.log(data)
+  // console.log(data)
+
+  // if backend return error message (data is not cpp)
+  if(data?.error){
+    verdictChip.className='chip malicious';
+    verdictChip.textContent = data.error;   
+    riskBar.style.width = '0%';
+    issuesEl.innerHTML = '';
+    modelMeta.textContent = '—';
+    timeMeta.textContent = '';
+    safeStatus.classList.remove('active');
+    vulnerableStatus.classList.remove('active');
+    safeConfidence.textContent = '';
+    vulnerableConfidence.textContent = '';
+    return;  
+  }
 
   issuesEl.innerHTML = '';
   modelMeta.textContent = '—';
