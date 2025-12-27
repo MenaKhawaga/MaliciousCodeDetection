@@ -61,7 +61,6 @@ def is_cpp_function(code: str) -> bool:
 
 
 # API Routes
-from fastapi.responses import FileResponse
 
 @app.get("/")
 def home():
@@ -123,4 +122,5 @@ async def predict(
         "timeMs": elapsed_ms,
         "model": "CodeBERT fine-tuned"
     }
+
 
