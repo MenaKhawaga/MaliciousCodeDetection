@@ -5,6 +5,7 @@ from transformers import RobertaTokenizerFast
 from model import CodeBERTClassifier
 from Preprocessing import preprocess_code
 from typing import Optional
+import re
 import time
 
 
@@ -48,8 +49,21 @@ MAX_LEN = 512
 model.load_state_dict(new_state_dict)
 model.eval()  # set to evaluation mode
 
+#input validation
+def is_cpp_function(code: str) -> bool:
+    code = code.strip()  
+
+    pattern = r'(int|void|char|float|double)\s+\w+\s*\(.*\)\s*\{'
+    
+    # search returns match object or None
+    if re.search(pattern, code):
+        return True
+    return False
+
 
 # API Routes
+from fastapi.responses import FileResponse
+
 @app.get("/")
 def home():
     return {"message": "Welcome to Malicious Code Detection API"}
@@ -64,10 +78,17 @@ async def predict(
     code: Optional[str] = Form(None)
 ):
     if file:
+        if not file.filename.endswith(".cpp"):
+            return {"error": "Only .cpp files are allowed"}
         code_bytes = await file.read()
         code = code_bytes.decode("utf-8", errors="ignore")
+        # validation for file content
+        if not is_cpp_function(code):
+            return {"error": "File content does not look like a valid C++ function"}
     elif code:
-        code = code
+        code = code.strip()
+        if not is_cpp_function(code):
+            return {"error": "Input does not look like a valid C++ function"} 
     else:
         return {"error": "No code provided"}
 
@@ -103,4 +124,3 @@ async def predict(
         "timeMs": elapsed_ms,
         "model": "CodeBERT fine-tuned"
     }
-
