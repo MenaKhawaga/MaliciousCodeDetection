@@ -164,11 +164,6 @@ input[type="file"]{display:none}
 .issue h4{margin:0 0 6px; font-size:1rem}
 .meta{color:var(--muted); font-size:.9rem; margin-top:8px}
 
-/* RTL toggle for Arabic */
-[dir="rtl"] .grid{direction:rtl}
-[dir="rtl"] .gutter{text-align:left}
-[dir="rtl"] .lang-toggle{flex-direction:row-reverse}
-
 /* New styles for Safe/Vulnerable card */
 .status-container {
   display: flex;
@@ -218,34 +213,22 @@ input[type="file"]{display:none}
 .status-safe .status-label {
   color: var(--safe);
 }
-
 .status-vulnerable .status-label {
   color: var(--danger);
 }
-
 .status-confidence {
   font-size: 0.9rem;
   color: var(--muted);
 }
-
 .status-safe .status-confidence {
   color: var(--safe);
 }
-
 .status-vulnerable .status-confidence {
   color: var(--danger);
 }
-
 /* Icons (using simple text for now, will use a font/svg later if needed) */
 .icon-check:before { content: "✓"; }
 .icon-alert:before { content: "⚠"; }
-/* Using Font Awesome icons for better visual if available, but for now using simple characters */
-/* To use the icons from the image, we need a font like Font Awesome or a custom SVG.
-   Since we don't have a font link, I'll use simple characters and assume the user will link a font or I'll add a link.
-   I will add a link to a simple icon font (e.g., Google Material Icons or Font Awesome) in the HTML later.
-   For now, I'll use simple characters and add a link to Font Awesome in the HTML.
-*/
-
 /* Adding Font Awesome link to the HTML file in the next step */
 .status-icon.fa-check-circle { font-family: 'Font Awesome 5 Free'; font-weight: 900; content: "\f058"; }
 .status-icon.fa-exclamation-triangle { font-family: 'Font Awesome 5 Free'; font-weight: 900; content: "\f071"; }
