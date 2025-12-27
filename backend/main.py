@@ -16,10 +16,9 @@ app = FastAPI(title="Malicious Code Detection API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],      
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-    expose_headers=["*"]
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"]
+
 )
 
 
@@ -124,3 +123,4 @@ async def predict(
         "timeMs": elapsed_ms,
         "model": "CodeBERT fine-tuned"
     }
+
