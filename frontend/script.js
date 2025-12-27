@@ -1,4 +1,4 @@
-// Simple i18n dictionary
+// Simple i18n dictionary -- Translation Dictionary 
 const dict = {
   en: {
     subtitle: " Code Vulnerability Detection",
@@ -28,7 +28,7 @@ const dict = {
 };
 let lang = 'en'; // Force English
 
-// Language toggling
+// Language toggling -- design pattern (content abstraction)
 const applyLang = () => {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
@@ -40,11 +40,12 @@ const applyLang = () => {
 
 applyLang();
 
-// Editor: line numbers and drag-drop
+// Editor: line numbers and drag-drop -- DOM Elements , link JS to HTML elements
 const codeEl = document.getElementById('code');
 const gutterEl = document.getElementById('gutter');
 const editorEl = document.getElementById('editor');
-
+// Editor Functionality 
+// Updates the line numbers in the gutter based on the number of lines in the code textarea
 const updateLines = () => {
   const lines = codeEl.value.split('\n').length;
   let out = '';
@@ -55,11 +56,11 @@ codeEl.addEventListener('input', updateLines);
 codeEl.addEventListener('paste', () => setTimeout(updateLines, 0));
 updateLines();
 
-// Drag & drop
+// Drag & drop - Highlight editor when file is dragged over it
 let droppedFile = null;  // variable carry draged file
 ['dragenter','dragover'].forEach(evt =>
   editorEl.addEventListener(evt, e => { e.preventDefault(); editorEl.style.outline='1px dashed #2a3b52'; })
-);
+); // Remove highlight when file leaves the editor or is dropped
 ['dragleave','drop'].forEach(evt =>
   editorEl.addEventListener(evt, e => { e.preventDefault(); editorEl.style.outline='none'; })
 );
@@ -88,7 +89,6 @@ document.getElementById('file').addEventListener('change', async e => {
 document.getElementById('clearBtn').onclick = () => {
   codeEl.value = '';
   updateLines();
-
   // Reset dropped file and file input
   droppedFile = null;
   document.getElementById('file').value = '';
@@ -149,7 +149,6 @@ const vulnerableConfidence = document.getElementById('vulnerableConfidence');
 
 function renderResult(data){
   // console.log(data)
-
   // if backend return error message (data is not cpp)
   if(data?.error){
     verdictChip.className='chip malicious';
@@ -244,12 +243,12 @@ function renderError(err){
   safeConfidence.textContent = '';
   vulnerableConfidence.textContent = '';
 }
-
+// Toggles the loading state of the analyze button (disables it and shows spinner)
 function setLoading(loading){
   analyzeBtn.disabled = loading;
   analyzeBtn.textContent = loading ? dict[lang].analyzing : dict[lang].analyzeBtn;
 }
-
+// Temporarily displays a message in the verdict chip for 2 seconds before restoring original content
 function flashChip(text){
   verdictChip.className='chip';
   verdictChip.textContent = text;
